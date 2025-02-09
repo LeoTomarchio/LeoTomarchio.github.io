@@ -11,37 +11,31 @@ interface Project {
   link: string;
 }
 
-interface ProjectsGridProps {
-  projects?: Project[];
-}
-
-const ProjectsGrid = ({ projects = defaultProjects }: ProjectsGridProps) => {
+const ProjectsGrid = () => {
   return (
-    <section className="w-full bg-background py-16 px-4 md:px-8">
+    <section className="w-full py-24 px-4 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="max-w-7xl mx-auto"
       >
-        <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-          Featured Projects
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Exploring the intersection of aerospace engineering and innovation
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              <ProjectCard
-                title={project.title}
-                description={project.description}
-                imageUrl={project.imageUrl}
-                technologies={project.technologies}
-                link={project.link}
-              />
+              <ProjectCard {...project} />
             </motion.div>
           ))}
         </div>
@@ -50,27 +44,13 @@ const ProjectsGrid = ({ projects = defaultProjects }: ProjectsGridProps) => {
   );
 };
 
-const defaultProjects: Project[] = [
+const projects: Project[] = [
   {
     id: "1",
     title: "BattleBot Gearbox",
     description:
-      "Outlined customer problem statement, developed CAD models for gears, bearings, and axles, and created technical drawings for assembly.",
-    imageUrl: "./images/unnamed.png",
-    details:
-      "Designed a custom gearbox assembly for a combat robot, focusing on durability and power transmission efficiency. The design features precision-engineered gears, robust bearings, and reinforced mounting plates to withstand high-impact scenarios.",
-    challenges: [
-      "Optimizing gear ratios for maximum torque while maintaining speed",
-      "Designing for impact resistance and structural integrity",
-      "Ensuring proper bearing alignment and support",
-      "Creating maintenance-friendly assembly design",
-    ],
-    outcomes: [
-      "Successfully implemented dual-shaft design for redundancy",
-      "Achieved 50% weight reduction compared to initial design",
-      "Integrated quick-release mechanism for rapid maintenance",
-      "Passed high-torque stress testing simulations",
-    ],
+      "Custom gearbox design optimized for combat robotics, featuring precision-engineered components and innovative dual-shaft system.",
+    imageUrl: "/images/BattleBot.png",
     technologies: [
       { name: "CAD", color: "bg-blue-500" },
       { name: "Technical Drawing", color: "bg-orange-500" },
@@ -82,22 +62,8 @@ const defaultProjects: Project[] = [
     id: "2",
     title: "Flight Simulator",
     description:
-      "Created MATLAB script for Boeing 747 flight dynamics, implemented in Simulink, and integrated with FlightGear for simulation.",
-    imageUrl: "./images/unnamed (1).png",
-    details:
-      "Developed a comprehensive flight simulation system using MATLAB and Simulink, integrating with FlightGear for visual feedback. The system models complete Boeing 747 flight dynamics with multiple control inputs and environmental factors.",
-    challenges: [
-      "Implementing complex aerodynamic equations in Simulink",
-      "Integrating multiple control systems for realistic flight behavior",
-      "Establishing real-time data communication with FlightGear",
-      "Optimizing simulation performance for smooth operation",
-    ],
-    outcomes: [
-      "Successfully modeled complete aircraft dynamics",
-      "Achieved real-time simulation with visual feedback",
-      "Created modular system for easy modification of flight parameters",
-      "Integrated environmental factors for realistic simulation",
-    ],
+      "Advanced flight dynamics simulation integrating MATLAB, Simulink, and FlightGear for comprehensive Boeing 747 modeling.",
+    imageUrl: "/images/FlightGear.png",
     technologies: [
       { name: "MATLAB", color: "bg-purple-500" },
       { name: "Simulink", color: "bg-blue-600" },
@@ -109,7 +75,7 @@ const defaultProjects: Project[] = [
     id: "3",
     title: "Launch Pad Design",
     description:
-      "Created CAD models and technical drawings for launch pad assembly using SolidWorks, used for machining and construction.",
+      "State-of-the-art launch pad facility designed with SolidWorks, incorporating advanced safety systems and efficient launch protocols.",
     imageUrl:
       "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&q=80",
     technologies: [

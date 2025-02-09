@@ -4,18 +4,10 @@ import ProjectsGrid from "./ProjectsGrid";
 import SkillsSection from "./SkillsSection";
 import TeamsSection from "./TeamsSection";
 import { motion } from "framer-motion";
+import ContactLinks from "./ContactLinks";
+import Navbar from "./Navbar";
 
-interface HomeProps {
-  title?: string;
-  subtitle?: string;
-  backgroundColor?: string;
-}
-
-const Home = ({
-  title = "Leandro Tomarchio",
-  subtitle = "Avionics Lead & Aerospace Engineering Professional",
-  backgroundColor = "#000000",
-}: HomeProps) => {
+const Home = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -23,12 +15,11 @@ const Home = ({
       transition={{ duration: 0.5 }}
       className="min-h-screen w-full bg-background"
     >
-      <HeroSection
-        title={title}
-        subtitle={subtitle}
-        backgroundColor={backgroundColor}
-      />
+      <Navbar />
+      {/* Hero Section */}
+      <HeroSection />
 
+      {/* Experience Section */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -38,27 +29,37 @@ const Home = ({
         <TeamsSection />
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <ProjectsGrid />
-      </motion.div>
+      {/* Projects Section with Gradient Background */}
+      <div className="relative bg-gradient-to-b from-background via-background/95 to-background">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <ProjectsGrid />
+        </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <SkillsSection />
-      </motion.div>
+      {/* Skills Section with Subtle Background */}
+      <div className="relative bg-muted/10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <SkillsSection />
+        </motion.div>
+      </div>
 
+      {/* Footer */}
       <footer className="w-full py-8 bg-background border-t border-border">
-        <div className="container mx-auto px-4 text-center text-muted-foreground">
-          <p>© {new Date().getFullYear()} Aerospace Engineering Portfolio</p>
+        <div className="container mx-auto px-4 text-center space-y-4">
+          <ContactLinks />
+          <p className="text-muted-foreground">
+            © {new Date().getFullYear()} Aerospace Engineering Portfolio
+          </p>
         </div>
       </footer>
     </motion.div>

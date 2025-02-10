@@ -13,6 +13,7 @@ interface Role {
   period: string;
   location: string;
   achievements: string[];
+  skills?: { name: string; color: string }[];
   images?: { url: string; caption: string }[];
 }
 
@@ -29,7 +30,7 @@ interface TeamDialogProps {
 export function TeamDialog({ isOpen, onClose, team }: TeamDialogProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto scrollbar-hide">
         <DialogHeader>
           <DialogTitle className="text-2xl">{team.name}</DialogTitle>
         </DialogHeader>
@@ -53,12 +54,26 @@ export function TeamDialog({ isOpen, onClose, team }: TeamDialogProps) {
                 </Badge>
               </div>
 
+              {role.skills && role.skills.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {role.skills.map((skill, idx) => (
+                    <Badge
+                      key={idx}
+                      variant="secondary"
+                      className={`${skill.color || "bg-secondary"}`}
+                    >
+                      {skill.name}
+                    </Badge>
+                  ))}
+                </div>
+              )}
+
               {role.images && role.images.length > 0 && (
                 <div className="relative w-full py-6">
                   <Carousel className="w-full">
-                    <CarouselContent>
+                    <CarouselContent className="-ml-4" align="start">
                       {role.images.map((image, idx) => (
-                        <CarouselItem key={idx}>
+                        <CarouselItem key={idx} className="pl-4 basis-full">
                           <div className="p-1">
                             <div className="overflow-hidden rounded-lg">
                               <img

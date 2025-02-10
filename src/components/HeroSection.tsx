@@ -33,16 +33,6 @@ const HeroSection = ({
               {title}
             </h1>
             <p className="text-xl sm:text-2xl text-gray-300">{subtitle}</p>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="mt-8"
-            >
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-lg font-medium transition-colors duration-200">
-                View Projects
-              </button>
-            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -55,11 +55,8 @@ const Home = () => {
 
       {/* Footer */}
       <footer className="w-full py-8 bg-background border-t border-border">
-        <div className="container mx-auto px-4 text-center space-y-4">
+        <div className="container mx-auto px-4 text-center">
           <ContactLinks />
-          <p className="text-muted-foreground">
-            © {new Date().getFullYear()} Aerospace Engineering Portfolio
-          </p>
         </div>
       </footer>
     </motion.div>

@@ -76,8 +76,7 @@ const projects: Project[] = [
     title: "Launch Pad Design",
     description:
       "State-of-the-art launch pad facility designed with SolidWorks, incorporating advanced safety systems and efficient launch protocols.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?auto=format&fit=crop&q=80",
+    imageUrl: "/images/launchpad.png",
     technologies: [
       { name: "SolidWorks", color: "bg-green-600" },
       { name: "Technical Drawing", color: "bg-red-500" },

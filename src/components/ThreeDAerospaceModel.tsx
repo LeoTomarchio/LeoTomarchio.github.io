@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 interface ThreeDAerospaceModelProps {
   modelUrl?: string;
@@ -9,7 +10,7 @@ interface ThreeDAerospaceModelProps {
 }
 
 const ThreeDAerospaceModel = ({
-  modelUrl = "/models/spacecraft.glb",
+  modelUrl = "/models/ImageToStl.com_tomcat-assembly.glb",
   rotationSpeed = 0.005,
   backgroundColor = "#000000",
 }: ThreeDAerospaceModelProps) => {
@@ -49,6 +50,10 @@ const ThreeDAerospaceModel = ({
     // Controls setup
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
+    controls.enableZoom = true;
+    controls.minDistance = 2;
+    controls.maxDistance = 10;
+    controls.enablePan = false;
     controlsRef.current = controls;
 
     // Lighting
@@ -59,70 +64,41 @@ const ThreeDAerospaceModel = ({
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
-    // Create a more complex aircraft shape
-    const fuselageGeometry = new THREE.CylinderGeometry(0.5, 0.3, 4, 32);
-    const fuselageMaterial = new THREE.MeshStandardMaterial({
-      color: 0x303030,
-      metalness: 0.8,
-      roughness: 0.2,
-    });
-    const fuselage = new THREE.Mesh(fuselageGeometry, fuselageMaterial);
-    fuselage.rotation.z = Math.PI / 2;
-    scene.add(fuselage);
-
-    // Wings
-    const wingGeometry = new THREE.BoxGeometry(3, 0.1, 1);
-    const wingMaterial = new THREE.MeshStandardMaterial({
-      color: 0x1e88e5,
-      metalness: 0.6,
-      roughness: 0.3,
-    });
-    const wings = new THREE.Mesh(wingGeometry, wingMaterial);
-    wings.position.y = -0.2;
-    scene.add(wings);
-
-    // Tail wings
-    const tailWingGeometry = new THREE.BoxGeometry(1, 0.1, 0.4);
-    const tailWings = new THREE.Mesh(tailWingGeometry, wingMaterial);
-    tailWings.position.x = -1.5;
-    tailWings.position.y = -0.2;
-    scene.add(tailWings);
-
-    // Vertical stabilizer
-    const stabilizerGeometry = new THREE.BoxGeometry(0.5, 0.8, 0.1);
-    const stabilizer = new THREE.Mesh(stabilizerGeometry, wingMaterial);
-    stabilizer.position.x = -1.5;
-    stabilizer.position.y = 0.2;
-    scene.add(stabilizer);
-
-    // Cockpit
-    const cockpitGeometry = new THREE.SphereGeometry(0.3, 32, 32);
-    const cockpitMaterial = new THREE.MeshStandardMaterial({
-      color: 0x88ccff,
-      metalness: 0.9,
-      roughness: 0.1,
-      transparent: true,
-      opacity: 0.8,
-    });
-    const cockpit = new THREE.Mesh(cockpitGeometry, cockpitMaterial);
-    cockpit.position.x = 1.5;
-    cockpit.scale.x = 1.5;
-    scene.add(cockpit);
-
-    // Group all parts
+    // Load the GLTF model
+    const loader = new GLTFLoader();
     const aircraft = new THREE.Group();
-    aircraft.add(fuselage, wings, tailWings, stabilizer, cockpit);
     scene.add(aircraft);
 
+    loader.load(
+      modelUrl,
+      (gltf) => {
+        aircraft.add(gltf.scene);
+        // Center and scale the model
+        const box = new THREE.Box3().setFromObject(gltf.scene);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 2 / maxDim;
+        gltf.scene.scale.setScalar(scale);
+        gltf.scene.position.sub(center.multiplyScalar(scale));
+        // Rotate to face forward
+        gltf.scene.rotation.y = Math.PI / 2;
+      },
+      undefined,
+      (error) => {
+        console.error("Error loading model:", error);
+      },
+    );
+
     // Position camera
-    camera.position.set(5, 2, 5);
+    camera.position.set(0, 2, 5);
     camera.lookAt(0, 0, 0);
 
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
 
-      aircraft.rotation.y += rotationSpeed;
+      aircraft.rotation.z += rotationSpeed;
       aircraft.position.y = Math.sin(Date.now() * 0.001) * 0.1;
 
       controls.update();

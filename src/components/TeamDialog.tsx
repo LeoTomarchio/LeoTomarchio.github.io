@@ -1,4 +1,10 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "./ui/dialog";
 import { Badge } from "./ui/badge";
 import {
   Carousel,
@@ -8,26 +14,23 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 
-interface Role {
-  title: string;
-  period: string;
-  location: string;
-  achievements: string[];
-  skills?: { name: string; color: string }[];
-  images?: { url: string; caption: string }[];
-}
-
-interface TeamDialogProps {
+interface ProjectDialogProps {
   isOpen: boolean;
   onClose: () => void;
   team: {
     name: string;
-    roles: Role[];
-    imageUrl?: string;
+    roles: {
+      title: string;
+      period: string;
+      location: string;
+      achievements: string[];
+      skills?: { name: string; color: string }[];
+      images?: { url: string; caption: string }[];
+    }[];
   };
 }
 
-export function TeamDialog({ isOpen, onClose, team }: TeamDialogProps) {
+export function TeamDialog({ isOpen, onClose, team }: ProjectDialogProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto scrollbar-hide">
@@ -71,19 +74,21 @@ export function TeamDialog({ isOpen, onClose, team }: TeamDialogProps) {
               {role.images && role.images.length > 0 && (
                 <div className="relative w-full py-6">
                   <Carousel className="w-full">
-                    <CarouselContent className="-ml-4" align="start">
+                    <CarouselContent className="-ml-4">
                       {role.images.map((image, idx) => (
                         <CarouselItem key={idx} className="pl-4 basis-full">
                           <div className="p-1">
                             <div className="overflow-hidden rounded-lg">
-                              <img
-                                src={image.url}
-                                alt={image.caption}
-                                className="w-full aspect-video object-cover"
-                              />
-                              <p className="text-sm text-muted-foreground mt-2 text-center">
-                                {image.caption}
-                              </p>
+                              <div className="relative rounded-lg">
+                                <img
+                                  src={image.url}
+                                  alt={image.caption}
+                                  className="w-full h-[400px] object-contain mx-auto"
+                                />
+                                <p className="text-sm text-muted-foreground mt-2 text-center">
+                                  {image.caption}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </CarouselItem>

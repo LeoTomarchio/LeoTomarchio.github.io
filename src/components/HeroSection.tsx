@@ -1,5 +1,5 @@
 import React from "react";
-import ThreeDAerospaceModel from "./ThreeDAerospaceModel";
+
 import { motion } from "framer-motion";
 
 interface HeroSectionProps {
@@ -15,9 +15,13 @@ const HeroSection = ({
 }: HeroSectionProps) => {
   return (
     <div className="relative w-full h-[600px] bg-black overflow-hidden">
-      {/* 3D Model Background */}
+      {/* Hero Image Background */}
       <div className="absolute inset-0 z-0">
-        <ThreeDAerospaceModel backgroundColor={backgroundColor} />
+        <img
+          src="/images/hero/mainpage.jpg"
+          alt="Aerospace Engineering"
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* Content Overlay */}

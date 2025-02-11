@@ -1,5 +1,7 @@
 import React from "react";
 import HeroSection from "./HeroSection";
+import SummarySection from "./SummarySection";
+import EducationSection from "./EducationSection";
 import ProjectsGrid from "./ProjectsGrid";
 import SkillsSection from "./SkillsSection";
 import TeamsSection from "./TeamsSection";
@@ -19,15 +21,37 @@ const Home = () => {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Experience Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <TeamsSection />
-      </motion.div>
+      <div className="space-y-0">
+        {/* Summary Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <SummarySection />
+        </motion.div>
+
+        {/* Education Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <EducationSection />
+        </motion.div>
+
+        {/* Experience Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <TeamsSection />
+        </motion.div>
+      </div>
 
       {/* Projects Section with Gradient Background */}
       <div className="relative bg-gradient-to-b from-background via-background/95 to-background">

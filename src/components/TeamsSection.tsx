@@ -50,9 +50,16 @@ const TeamsSection = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold mb-4">Experience</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Leading aerospace engineering initiatives across multiple teams
-            </p>
+            <div className="max-w-2xl mx-auto mb-8 text-center">
+              <p className="text-lg text-muted-foreground mb-4">
+                Aerospace Engineering student at Toronto Metropolitan University
+                with a focus on avionics, propulsion systems, and aerodynamics.
+              </p>
+              <p className="text-lg text-muted-foreground">
+                Leading aerospace engineering initiatives across multiple teams,
+                specializing in flight control systems and structural design.
+              </p>
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -72,7 +79,7 @@ const TeamsSection = () => {
                 >
                   <CardHeader className="p-0">
                     {team.imageUrl && (
-                      <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+                      <div className="h-80 w-full overflow-hidden rounded-t-lg">
                         <img
                           src={team.imageUrl}
                           alt={team.name}
@@ -144,16 +151,16 @@ const teams: Team[] = [
         ],
         images: [
           {
-            url: "/images/teams/toronto-metropolitan-aero-design/image1.jpg",
-            caption: "Avionics System Development",
+            url: "/images/teams/toronto-metropolitan-aero-design/tmad1.jpg",
+            caption: "Competition Aircraft Assembly",
           },
           {
-            url: "/images/teams/toronto-metropolitan-aero-design/image2.jpg",
-            caption: "Flight Controller Testing",
+            url: "/images/teams/toronto-metropolitan-aero-design/tmad2.jpg",
+            caption: "Flight Controller Integration",
           },
           {
-            url: "/images/teams/toronto-metropolitan-aero-design/image3.jpg",
-            caption: "Drone Assembly and Integration",
+            url: "/images/teams/toronto-metropolitan-aero-design/tmad2.jpg",
+            caption: "Final System Testing",
           },
         ],
       },
@@ -212,16 +219,16 @@ const teams: Team[] = [
         ],
         images: [
           {
-            url: "/images/teams/metropolitan-aerospace-combustion-hub/image1.jpg",
-            caption: "Structural Design Process",
+            url: "/images/teams/metropolitan-aerospace-combustion-hub/mach1.png",
+            caption: "Engine Test Stand Design",
           },
           {
-            url: "/images/teams/metropolitan-aerospace-combustion-hub/image2.jpg",
-            caption: "Manufacturing and Assembly",
+            url: "/images/teams/metropolitan-aerospace-combustion-hub/mach2.jpg",
+            caption: "Propellant System Assembly",
           },
           {
-            url: "/images/teams/metropolitan-aerospace-combustion-hub/image3.jpg",
-            caption: "Testing and Validation",
+            url: "/images/teams/metropolitan-aerospace-combustion-hub/mach3.jpg",
+            caption: "High-Pressure Testing",
           },
         ],
       },
@@ -255,16 +262,16 @@ const teams: Team[] = [
         location: "Toronto, ON",
         images: [
           {
-            url: "/images/teams/metropolitan-aerospace-rocketry-society/image1.jpg",
-            caption: "Model Rocket Design and Simulation",
+            url: "/images/teams/metropolitan-aerospace-rocketry-society/mars1.jpg",
+            caption: "Rocket Assembly and Integration",
           },
           {
-            url: "/images/teams/metropolitan-aerospace-rocketry-society/image2.jpg",
-            caption: "CFD Analysis in Ansys Fluent",
+            url: "/images/teams/metropolitan-aerospace-rocketry-society/mars2.jpg",
+            caption: "Launch Site Preparation",
           },
           {
-            url: "/images/teams/metropolitan-aerospace-rocketry-society/image3.jpg",
-            caption: "Rocket Launch and Testing",
+            url: "/images/teams/metropolitan-aerospace-rocketry-society/mars3.jpg",
+            caption: "Post-Launch Recovery",
           },
         ],
         achievements: [
@@ -292,16 +299,16 @@ const teams: Team[] = [
         location: "Toronto, ON",
         images: [
           {
-            url: "/images/teams/toronto-metropolitan-launch-initiative/image1.jpg",
-            caption: "Airfoil Analysis and Design",
+            url: "/images/teams/toronto-metropolitan-launch-initiative/tmli1.jpg",
+            caption: "Glider Wind Tunnel Testing",
           },
           {
-            url: "/images/teams/toronto-metropolitan-launch-initiative/image2.jpg",
-            caption: "3D Printing and Assembly",
+            url: "/images/teams/toronto-metropolitan-launch-initiative/tmli1.jpg",
+            caption: "Competition Glider Assembly",
           },
           {
             url: "/images/teams/toronto-metropolitan-launch-initiative/image.png",
-            caption: "Competition Flight Testing",
+            caption: "Distance Competition Flight",
           },
         ],
         achievements: [

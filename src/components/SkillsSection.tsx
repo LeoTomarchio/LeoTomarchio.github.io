@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "./ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 interface Skill {
   name: string;
@@ -115,7 +116,7 @@ const SkillsSection = ({
   description = "Expertise across aerospace engineering disciplines",
 }: SkillsSectionProps) => {
   return (
-    <section className="w-full py-16 bg-background">
+    <section className="w-full py-12 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -123,38 +124,41 @@ const SkillsSection = ({
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">{title}</h2>
-          <p className="text-muted-foreground">{description}</p>
+          <h2 className="text-4xl font-bold mb-4">{title}</h2>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {Object.entries(skills).map(([category, categorySkills], index) => (
             <motion.div
               key={category}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="space-y-4"
             >
-              <h3 className="text-xl font-semibold mb-4">{category}</h3>
-              <div className="space-y-2">
-                {categorySkills.map((skill) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-center gap-2"
-                  >
-                    <Badge
-                      variant="secondary"
-                      className={`${skill.color || "bg-primary"} text-white`}
-                    >
-                      {skill.name}
-                    </Badge>
-                  </motion.div>
-                ))}
-              </div>
+              <Card className="h-full hover:border-primary/20 transition-colors">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg">{category}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {categorySkills.map((skill) => (
+                      <motion.div
+                        key={skill.name}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Badge
+                          variant="secondary"
+                          className={`${skill.color || "bg-primary"} text-white hover:opacity-90 transition-opacity cursor-default`}
+                        >
+                          {skill.name}
+                        </Badge>
+                      </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </div>

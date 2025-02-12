@@ -13,7 +13,7 @@ interface Project {
 
 const ProjectsGrid = () => {
   return (
-    <section className="w-full py-24 px-4 md:px-8">
+    <section className="w-full py-12 px-4 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -22,9 +22,6 @@ const ProjectsGrid = () => {
       >
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Exploring the intersection of aerospace engineering and innovation
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

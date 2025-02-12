@@ -41,7 +41,7 @@ const TeamsSection = () => {
           team={selectedTeam}
         />
       )}
-      <section className="w-full py-24 bg-background">
+      <section className="w-full py-12 bg-background">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -50,19 +50,9 @@ const TeamsSection = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold mb-4">Experience</h2>
-            <div className="max-w-2xl mx-auto mb-8 text-center">
-              <p className="text-lg text-muted-foreground mb-4">
-                Aerospace Engineering student at Toronto Metropolitan University
-                with a focus on avionics, propulsion systems, and aerodynamics.
-              </p>
-              <p className="text-lg text-muted-foreground">
-                Leading aerospace engineering initiatives across multiple teams,
-                specializing in flight control systems and structural design.
-              </p>
-            </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {teams.map((team, index) => (
               <motion.div
                 key={team.id}
@@ -79,15 +69,15 @@ const TeamsSection = () => {
                 >
                   <CardHeader className="p-0">
                     {team.imageUrl && (
-                      <div className="h-80 w-full overflow-hidden rounded-t-lg">
+                      <div className="p-8 flex justify-center items-center bg-background/50 rounded-t-lg">
                         <img
                           src={team.imageUrl}
                           alt={team.name}
-                          className="w-full h-full object-cover"
+                          className="h-32 w-auto object-contain"
                         />
                       </div>
                     )}
-                    <div className="p-6 pb-2">
+                    <div className="p-6 pb-2 text-center border-t border-border">
                       <CardTitle className="text-xl">{team.name}</CardTitle>
                     </div>
                   </CardHeader>

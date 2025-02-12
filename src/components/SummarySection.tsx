@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const SummarySection = () => {
   return (
-    <section className="w-full pb-0 pt-24 bg-background">
+    <section className="w-full py-8 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

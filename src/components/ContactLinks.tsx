@@ -12,7 +12,7 @@ const ContactLinks = () => {
     {
       icon: <FileText className="h-5 w-5" />,
       label: "Resume",
-      href: "/resume.pdf",
+      href: "/Leandro Tomarchio's Resume.pdf",
       tooltip: "Download Resume",
     },
     {
@@ -30,14 +30,18 @@ const ContactLinks = () => {
     {
       icon: <Mail className="h-5 w-5" />,
       label: "Email",
-      href: "mailto:leandrotomarchio@gmail.com",
-      tooltip: "leandrotomarchio@gmail.com",
+      onClick: () => {
+        navigator.clipboard.writeText("leandrotomarchio@gmail.com");
+      },
+      tooltip: "Click to copy: leandrotomarchio@gmail.com",
     },
     {
       icon: <Phone className="h-5 w-5" />,
       label: "Phone",
-      href: "tel:416-708-6598",
-      tooltip: "416-708-6598",
+      onClick: () => {
+        navigator.clipboard.writeText("416-708-6598");
+      },
+      tooltip: "Click to copy: 416-708-6598",
     },
   ];
 
@@ -51,20 +55,21 @@ const ContactLinks = () => {
                 variant="ghost"
                 size="icon"
                 className="hover:bg-primary/10"
-                asChild
+                asChild={!contact.onClick}
+                onClick={contact.onClick}
               >
-                <a
-                  href={contact.href}
-                  target={
-                    contact.label === "Phone" || contact.label === "Email"
-                      ? "_self"
-                      : "_blank"
-                  }
-                  rel="noopener noreferrer"
-                  aria-label={contact.label}
-                >
-                  {contact.icon}
-                </a>
+                {contact.href ? (
+                  <a
+                    href={contact.href}
+                    target={contact.label === "Phone" ? "_self" : "_blank"}
+                    rel="noopener noreferrer"
+                    aria-label={contact.label}
+                  >
+                    {contact.icon}
+                  </a>
+                ) : (
+                  contact.icon
+                )}
               </Button>
             </TooltipTrigger>
             <TooltipContent>

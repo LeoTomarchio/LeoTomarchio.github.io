@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Badge } from "./ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 interface Skill {
   name: string;
@@ -12,153 +11,131 @@ interface Skill {
 interface SkillsSectionProps {
   skills?: Record<string, Skill[]>;
   title?: string;
-  description?: string;
 }
 
 const SkillsSection = ({
+  title = "Technical Skills",
   skills = {
-    "Design & CAD": [
-      { name: "SolidWorks", category: "CAD", color: "bg-blue-500" },
+    "Computer-Aided Design (CAD)": [
       { name: "CATIA V5", category: "CAD", color: "bg-blue-500" },
-      { name: "GD&T", category: "Design", color: "bg-blue-500" },
-      { name: "Technical Drawing", category: "Design", color: "bg-blue-500" },
-      { name: "OpenRocket", category: "Design", color: "bg-blue-500" },
+      { name: "SolidWorks", category: "CAD", color: "bg-blue-500" },
+      { name: "Ansys DesignModeler", category: "CAD", color: "bg-blue-500" },
+      { name: "Onshape", category: "CAD", color: "bg-blue-500" },
+      { name: "Inventor", category: "CAD", color: "bg-blue-500" },
+      { name: "Fusion 360", category: "CAD", color: "bg-blue-500" },
+    ],
+    "Engineering Standards": [
+      { name: "GD&T", category: "Standards", color: "bg-purple-500" },
+      { name: "SAE Standards", category: "Standards", color: "bg-purple-500" },
+      { name: "ASME Standards", category: "Standards", color: "bg-purple-500" },
+      { name: "AN Standards", category: "Standards", color: "bg-purple-500" },
     ],
     "Analysis & Simulation": [
-      {
-        name: "CFD (Ansys Fluent)",
-        category: "Analysis",
-        color: "bg-green-500",
-      },
-      { name: "XFOIL/XFLR5", category: "Analysis", color: "bg-green-500" },
-      { name: "FEA", category: "Analysis", color: "bg-green-500" },
-      {
-        name: "Flight Dynamics",
-        category: "Simulation",
-        color: "bg-green-500",
-      },
-      { name: "Aerodynamics", category: "Analysis", color: "bg-green-500" },
+      { name: "Ansys Fluent", category: "CFD", color: "bg-green-500" },
+      { name: "Ansys Meshing", category: "CFD", color: "bg-green-500" },
+      { name: "2D/3D Modeling", category: "CFD", color: "bg-green-500" },
+      { name: "FEA Theory", category: "Analysis", color: "bg-green-500" },
+      { name: "AE8115 FEA", category: "Analysis", color: "bg-green-500" },
     ],
-    "Programming & Tools": [
+    "Programming & Development": [
       { name: "MATLAB", category: "Programming", color: "bg-orange-500" },
+      { name: "Simulink", category: "Programming", color: "bg-orange-500" },
       { name: "Python", category: "Programming", color: "bg-orange-500" },
-      { name: "Simulink", category: "Tools", color: "bg-orange-500" },
-      { name: "QGroundControl", category: "Tools", color: "bg-orange-500" },
-      { name: "Mission Planner", category: "Tools", color: "bg-orange-500" },
+      { name: "JavaScript", category: "Programming", color: "bg-orange-500" },
+      { name: "C", category: "Programming", color: "bg-orange-500" },
+      { name: "SQL", category: "Programming", color: "bg-orange-500" },
+      { name: "LaTeX", category: "Programming", color: "bg-orange-500" },
     ],
-    "Avionics & Electronics": [
-      {
-        name: "Flight Controllers",
-        category: "Avionics",
-        color: "bg-purple-500",
-      },
-      {
-        name: "INAV Configuration",
-        category: "Avionics",
-        color: "bg-purple-500",
-      },
-      {
-        name: "Electrical Systems",
-        category: "Electronics",
-        color: "bg-purple-500",
-      },
-      {
-        name: "Avionics Integration",
-        category: "Avionics",
-        color: "bg-purple-500",
-      },
-      {
-        name: "Test Bed Development",
-        category: "Testing",
-        color: "bg-purple-500",
-      },
+    "Electrical & Hardware": [
+      { name: "Quartus", category: "Hardware", color: "bg-yellow-500" },
+      { name: "Multisim", category: "Hardware", color: "bg-yellow-500" },
+      { name: "VHDL", category: "Hardware", color: "bg-yellow-500" },
+      { name: "Verilog", category: "Hardware", color: "bg-yellow-500" },
+      { name: "FPGA", category: "Hardware", color: "bg-yellow-500" },
     ],
-    "Manufacturing & Testing": [
-      {
-        name: "CNC Machining",
-        category: "Manufacturing",
-        color: "bg-yellow-500",
-      },
-      {
-        name: "3D Printing",
-        category: "Manufacturing",
-        color: "bg-yellow-500",
-      },
-      {
-        name: "Lathe & Mill",
-        category: "Manufacturing",
-        color: "bg-yellow-500",
-      },
-      {
-        name: "Quality Assurance",
-        category: "Testing",
-        color: "bg-yellow-500",
-      },
-      {
-        name: "High-Pressure Testing",
-        category: "Testing",
-        color: "bg-yellow-500",
-      },
+    "Office & Productivity": [
+      { name: "MS Word", category: "Office", color: "bg-red-500" },
+      { name: "Excel Macros", category: "Office", color: "bg-red-500" },
+      { name: "VBA", category: "Office", color: "bg-red-500" },
+      { name: "PowerPoint", category: "Office", color: "bg-red-500" },
     ],
-    "Project Skills": [
-      { name: "Team Leadership", category: "Management", color: "bg-red-500" },
+    Languages: [
       {
-        name: "Technical Documentation",
-        category: "Documentation",
-        color: "bg-red-500",
+        name: "English (Native)",
+        category: "Language",
+        color: "bg-indigo-500",
       },
-      { name: "Project Planning", category: "Management", color: "bg-red-500" },
-      { name: "Risk Assessment", category: "Management", color: "bg-red-500" },
-      { name: "Collaboration", category: "Soft Skills", color: "bg-red-500" },
+      {
+        name: "French (Upper Intermediate)",
+        category: "Language",
+        color: "bg-indigo-500",
+      },
     ],
   },
-  title = "Technical Skills",
-  description = "Expertise across aerospace engineering disciplines",
 }: SkillsSectionProps) => {
   return (
-    <section className="w-full py-12 bg-background">
+    <section className="w-full py-16 bg-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">{title}</h2>
+          <h2 className="text-4xl font-bold">{title}</h2>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="max-w-6xl mx-auto space-y-12">
           {Object.entries(skills).map(([category, categorySkills], index) => (
             <motion.div
               key={category}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group"
             >
-              <Card className="h-full hover:border-primary/20 transition-colors">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg">{category}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {categorySkills.map((skill) => (
+              <div className="relative">
+                <div className="flex items-center gap-6 mb-4">
+                  <h3 className="text-xl font-semibold tracking-tight">
+                    {category}
+                  </h3>
+                  <div className="h-px bg-border flex-grow" />
+                </div>
+                <div className="pl-4 border-l-2 border-border group-hover:border-primary/50 transition-colors duration-300">
+                  <div className="flex flex-wrap gap-2 items-center">
+                    {categorySkills.map((skill, skillIndex) => (
                       <motion.div
                         key={skill.name}
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{
+                          duration: 0.2,
+                          delay: skillIndex * 0.05,
+                        }}
                       >
                         <Badge
                           variant="secondary"
-                          className={`${skill.color || "bg-primary"} text-white hover:opacity-90 transition-opacity cursor-default`}
+                          className={`
+                            ${skill.color || "bg-primary"}
+                            text-white
+                            transition-all
+                            duration-300
+                            cursor-default
+                            text-sm
+                            font-medium
+                            shadow-sm
+                            hover:shadow
+                            hover:scale-105
+                            hover:opacity-90
+                          `}
                         >
                           {skill.name}
                         </Badge>
                       </motion.div>
                     ))}
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

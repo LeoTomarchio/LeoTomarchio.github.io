@@ -6,6 +6,7 @@ import {
   DialogDescription,
 } from "./ui/dialog";
 import { Badge } from "./ui/badge";
+import { useEffect, useState } from "react";
 
 interface EducationDialogProps {
   isOpen: boolean;
@@ -20,119 +21,81 @@ export function EducationDialog({ isOpen, onClose }: EducationDialogProps) {
     term?: string;
   }
 
-  const firstYear: Course[] = [
-    {
-      code: "AER 222",
-      name: "Engineering Design and Graphics",
-      grade: "A",
-      term: "Fall 2022",
+  const [courses, setCourses] = useState<{
+    thirdYear: Course[];
+    fourthYear: Course[];
+    specialization: {
+      focus: string;
+      details: string[];
+    };
+  }>({
+    thirdYear: [],
+    fourthYear: [],
+    specialization: {
+      focus: "",
+      details: [],
     },
-    {
-      code: "CEN 100",
-      name: "Introduction to Engineering",
-      grade: "A+",
-      term: "Fall 2022",
-    },
-    {
-      code: "CHY 102",
-      name: "General Chemistry",
-      grade: "A",
-      term: "Fall 2022",
-    },
-    {
-      code: "CMN 432",
-      name: "Communication in the Engineering Professions",
-      grade: "A+",
-      term: "Fall 2022",
-    },
-    { code: "MTH 140", name: "Calculus I", grade: "A", term: "Fall 2022" },
-    {
-      code: "MTH 141",
-      name: "Linear Algebra",
-      grade: "A",
-      term: "Winter 2023",
-    },
-    { code: "MTH 240", name: "Calculus II", grade: "A", term: "Winter 2023" },
-    {
-      code: "PCS 211",
-      name: "Physics: Mechanics",
-      grade: "A+",
-      term: "Winter 2023",
-    },
-    {
-      code: "PCS 125",
-      name: "Physics: Waves and Fields",
-      grade: "A",
-      term: "Winter 2023",
-    },
-  ];
+  });
 
-  const secondYear: Course[] = [
-    {
-      code: "AER 202",
-      name: "Vector Calculus and Partial Differential Equations",
-      grade: "A",
-      term: "Fall 2023",
-    },
-    {
-      code: "AER 215",
-      name: "Scientific Computing for Mechanical and Aerospace Engineers",
-      grade: "A+",
-      term: "Fall 2023",
-    },
-    {
-      code: "AER 301",
-      name: "Engineering Design Project",
-      grade: "A",
-      term: "Fall 2023",
-    },
-    { code: "AER 303", name: "Fluid Mechanics", grade: "A", term: "Fall 2023" },
-    {
-      code: "AER 309",
-      name: "Model-Based Design for Aerospace Systems",
-      grade: "A",
-      term: "Winter 2024",
-    },
-    {
-      code: "AER 315",
-      name: "Introduction to Aerospace Engineering",
-      grade: "A+",
-      term: "Winter 2024",
-    },
-    {
-      code: "AER 322",
-      name: "Engineering Design Project",
-      grade: "In Progress",
-      term: "Winter 2024",
-    },
-    {
-      code: "MEC 411",
-      name: "Mechanics of Machines and Mechanisms",
-      grade: "In Progress",
-      term: "Winter 2024",
-    },
-    {
-      code: "MEC 516",
-      name: "Mechanics of Materials",
-      grade: "In Progress",
-      term: "Winter 2024",
-    },
-  ];
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch("/src/data/courses.txt");
+        const text = await response.text();
+        const lines = text.split("\n");
 
-  const specialization = {
-    focus: "Aircraft Design & Avionics",
-    details: [
-      "Emphasis on flight control systems and autonomous aircraft",
-      "Research in propulsion technology and aerodynamics",
-      "Active participation in aerospace design teams",
-    ],
-    certifications: [
-      "Canadian Private Pilot License (In Progress)",
-      "Certified SolidWorks Associate (CSWA)",
-      "Advanced Composite Manufacturing Workshop",
-      "High-Pressure Systems Safety Certification",
-    ],
-  };
+        const parsedCourses = {
+          thirdYear: [] as Course[],
+          fourthYear: [] as Course[],
+          specialization: {
+            focus: "",
+            details: [] as string[],
+          },
+        };
+
+        let currentSection = "";
+
+        lines.forEach((line) => {
+          if (line.startsWith("[")) {
+            currentSection = line.slice(1, -1);
+          } else if (line && !line.startsWith("#")) {
+            if (
+              currentSection === "Third Year" ||
+              currentSection === "Fourth Year"
+            ) {
+              if (line.includes("|")) {
+                const [courseInfo, grade, term] = line
+                  .split("|")
+                  .map((s) => s.trim());
+                const [code, name] = courseInfo
+                  .split(" - ")
+                  .map((s) => s.trim());
+                const course = { code, name, grade, term };
+
+                if (currentSection === "Third Year") {
+                  parsedCourses.thirdYear.push(course);
+                } else {
+                  parsedCourses.fourthYear.push(course);
+                }
+              }
+            } else if (currentSection === "Specialization") {
+              if (line.startsWith("Specialization:")) {
+                parsedCourses.specialization.focus = line.split(":")[1].trim();
+              } else if (line.startsWith(">")) {
+                parsedCourses.specialization.details.push(line.slice(2).trim());
+              }
+            }
+          }
+        });
+
+        setCourses(parsedCourses);
+      } catch (error) {
+        console.error("Error loading courses:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -145,7 +108,7 @@ export function EducationDialog({ isOpen, onClose }: EducationDialogProps) {
             Toronto Metropolitan University (2022 - 2026)
             <a
               href="https://www.torontomu.ca/calendar/2024-2025/programs/feas/aerospace/"
-              className="text-primary hover:underline ml-2"
+              className="text-blue-500 hover:text-blue-600 hover:underline ml-2"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -168,71 +131,108 @@ export function EducationDialog({ isOpen, onClose }: EducationDialogProps) {
 
           <div className="space-y-4">
             <div>
-              <h4 className="font-semibold mb-3">First Year</h4>
-              <div className="grid gap-2">
-                {firstYear.map((course, index) => (
-                  <div
-                    key={index}
-                    className="text-sm text-muted-foreground p-2 rounded-lg border"
-                  >
-                    {course}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-3">Second Year</h4>
-              <div className="grid gap-2">
-                {secondYear.map((course, index) => (
-                  <div
-                    key={index}
-                    className="text-sm text-muted-foreground p-2 rounded-lg border"
-                  >
-                    {course}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
               <h4 className="font-semibold mb-3">Third Year</h4>
               <div className="grid gap-2">
-                {thirdYear.map((course, index) => (
-                  <div
-                    key={index}
-                    className="text-sm text-muted-foreground p-2 rounded-lg border"
-                  >
-                    {course}
-                  </div>
-                ))}
+                {courses.thirdYear.map((course, index) => {
+                  const getBadgeColor = (grade: string) => {
+                    switch (grade) {
+                      case "Passed":
+                        return "bg-green-500 text-white hover:bg-green-600";
+                      case "Current":
+                        return "bg-blue-500 text-white hover:bg-blue-600";
+                      case "Upcoming":
+                        return "bg-yellow-500 text-white hover:bg-yellow-600";
+                      default:
+                        return "bg-muted";
+                    }
+                  };
+
+                  return (
+                    <div
+                      key={index}
+                      className="text-sm p-3 rounded-lg border hover:border-primary/50 transition-all duration-200 hover:shadow-sm"
+                    >
+                      <div className="flex justify-between items-start gap-4">
+                        <div>
+                          <div className="font-medium text-base mb-1">
+                            {course.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {course.code}
+                          </div>
+                        </div>
+                        <Badge
+                          variant="secondary"
+                          className={`text-xs whitespace-nowrap ${getBadgeColor(course.grade || "")}`}
+                        >
+                          {course.grade}
+                        </Badge>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
             <div>
               <h4 className="font-semibold mb-3">Fourth Year</h4>
               <div className="grid gap-2">
-                {fourthYear.map((course, index) => (
-                  <div
-                    key={index}
-                    className="text-sm text-muted-foreground p-2 rounded-lg border"
-                  >
-                    {course}
-                  </div>
-                ))}
+                {courses.fourthYear.map((course, index) => {
+                  const getBadgeColor = (grade: string) => {
+                    switch (grade) {
+                      case "Passed":
+                        return "bg-green-500 text-white hover:bg-green-600";
+                      case "Current":
+                        return "bg-blue-500 text-white hover:bg-blue-600";
+                      case "Upcoming":
+                        return "bg-yellow-500 text-white hover:bg-yellow-600";
+                      default:
+                        return "bg-muted";
+                    }
+                  };
+
+                  return (
+                    <div
+                      key={index}
+                      className="text-sm p-3 rounded-lg border hover:border-primary/50 transition-all duration-200 hover:shadow-sm"
+                    >
+                      <div className="flex justify-between items-start gap-4">
+                        <div>
+                          <div className="font-medium text-base mb-1">
+                            {course.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground">
+                            {course.code}
+                          </div>
+                        </div>
+                        <Badge
+                          variant="secondary"
+                          className={`text-xs whitespace-nowrap ${getBadgeColor(course.grade || "")}`}
+                        >
+                          {course.grade}
+                        </Badge>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-3">Additional Information</h4>
-            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
-              <li>Optional 12-16 month co-op/internship opportunity</li>
-              <li>
-                Accredited by the Canadian Engineering Accreditation Board
-              </li>
-              <li>Access to state-of-the-art aerospace facilities and labs</li>
-            </ul>
+            <h4 className="font-semibold mb-3">Specialization</h4>
+            <div className="space-y-4">
+              <div className="p-4 rounded-lg border">
+                <h5 className="font-medium mb-2">
+                  Focus: {courses.specialization.focus}
+                </h5>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  {courses.specialization.details.map((detail, index) => (
+                    <li key={index}>{detail}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </DialogContent>

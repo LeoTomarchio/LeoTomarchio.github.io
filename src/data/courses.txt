@@ -5,38 +5,29 @@
 # Course Code - Course Name | Grade | Term
 # Add notes with > at the start of the line
 
-[First Year]
-AER 222 - Engineering Design and Graphics | A | Fall 2022
-CEN 100 - Introduction to Engineering | A+ | Fall 2022
-CHY 102 - General Chemistry | A | Fall 2022
-CMN 432 - Communication in the Engineering Professions | A+ | Fall 2022
-MTH 140 - Calculus I | A | Fall 2022
-MTH 141 - Linear Algebra | A | Winter 2023
-MTH 240 - Calculus II | A | Winter 2023
-PCS 211 - Physics: Mechanics | A+ | Winter 2023
-PCS 125 - Physics: Waves and Fields | A | Winter 2023
-> Dean's List 2022-2023
+[Third Year]
+AER 504 - Aerodynamics | Passed | 
+AER 507 - Materials and Manufacturing | Passed | 
+AER 520 - Stress Analysis | Passed | 
+EES 612 - Electric Machines and Actuators | Passed | 
+MTH 510 - Numerical Analysis | Passed | 
+AER 509 - Control Systems | Current | 
+AER 606 - Component Design and Material Selection | Current | 
+AER 615 - Aircraft Performance | Current | 
+AER 621 - Aerospace Structural Design | Current | 
+AER 622 - Gas Dynamics | Current |
+AER 699 - Aerospace Sensors | Current | 
 
-[Second Year]
-AER 202 - Vector Calculus and Partial Differential Equations | A | Fall 2023
-AER 215 - Scientific Computing for Mechanical and Aerospace Engineers | A+ | Fall 2023
-AER 301 - Engineering Design Project | A | Fall 2023
-AER 303 - Fluid Mechanics | A | Fall 2023
-AER 309 - Model-Based Design for Aerospace Systems | A | Winter 2024
-AER 315 - Introduction to Aerospace Engineering | A+ | Winter 2024
-AER 322 - Engineering Design Project | In Progress | Winter 2024
-MEC 411 - Mechanics of Machines and Mechanisms | In Progress | Winter 2024
-MEC 516 - Mechanics of Materials | In Progress | Winter 2024
-> Dean's List 2023-2024
+[Fourth Year]
+EES 508 - Digital Systems | Passed |
+AER 715 - Avionics and Systems | Upcoming | 
+AER 716 - Aircraft Stability and Control | Upcoming | 
+AER 850 - Introduction to Machine Learning | Passed | 
+AER 710 - Propulsion | Upcoming | 
+AER 818 - Manufacturing Management | Upcoming | 
+AER 822 - Avionics Design Project | Upcoming | 
 
 [Specialization]
-Focus: Aircraft Design & Avionics
-> Emphasis on flight control systems and autonomous aircraft
-> Research in propulsion technology and aerodynamics
+Specialization: Avionics
+> Emphasis on flight control systems, sensors and autonomous aircraft
 > Active participation in aerospace design teams
-
-[Professional Development]
-> Canadian Private Pilot License (In Progress)
-> Certified SolidWorks Associate (CSWA)
-> Advanced Composite Manufacturing Workshop
-> High-Pressure Systems Safety Certification

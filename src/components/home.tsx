@@ -5,6 +5,7 @@ import EducationSection from "./EducationSection";
 import ProjectsGrid from "./ProjectsGrid";
 import SkillsSection from "./SkillsSection";
 import TeamsSection from "./TeamsSection";
+import CertificationsSection from "./CertificationsSection";
 import { motion } from "framer-motion";
 import ContactLinks from "./ContactLinks";
 import Navbar from "./Navbar";
@@ -74,6 +75,16 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           <SkillsSection />
+        </motion.div>
+
+        {/* Certifications Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <CertificationsSection />
         </motion.div>
       </div>
 

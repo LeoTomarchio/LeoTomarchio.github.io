@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Badge } from "./ui/badge";
 
@@ -6,73 +6,60 @@ interface Skill {
   name: string;
   category: string;
   color?: string;
+  link?: string;
 }
 
 interface SkillsSectionProps {
-  skills?: Record<string, Skill[]>;
   title?: string;
 }
 
-const SkillsSection = ({
-  title = "Technical Skills",
-  skills = {
-    "Computer-Aided Design (CAD)": [
-      { name: "CATIA V5", category: "CAD", color: "bg-blue-500" },
-      { name: "SolidWorks", category: "CAD", color: "bg-blue-500" },
-      { name: "Ansys DesignModeler", category: "CAD", color: "bg-blue-500" },
-      { name: "Onshape", category: "CAD", color: "bg-blue-500" },
-      { name: "Inventor", category: "CAD", color: "bg-blue-500" },
-      { name: "Fusion 360", category: "CAD", color: "bg-blue-500" },
-    ],
-    "Engineering Standards": [
-      { name: "GD&T", category: "Standards", color: "bg-purple-500" },
-      { name: "SAE Standards", category: "Standards", color: "bg-purple-500" },
-      { name: "ASME Standards", category: "Standards", color: "bg-purple-500" },
-      { name: "AN Standards", category: "Standards", color: "bg-purple-500" },
-    ],
-    "Analysis & Simulation": [
-      { name: "Ansys Fluent", category: "CFD", color: "bg-green-500" },
-      { name: "Ansys Meshing", category: "CFD", color: "bg-green-500" },
-      { name: "2D/3D Modeling", category: "CFD", color: "bg-green-500" },
-      { name: "FEA Theory", category: "Analysis", color: "bg-green-500" },
-      { name: "AE8115 FEA", category: "Analysis", color: "bg-green-500" },
-    ],
-    "Programming & Development": [
-      { name: "MATLAB", category: "Programming", color: "bg-orange-500" },
-      { name: "Simulink", category: "Programming", color: "bg-orange-500" },
-      { name: "Python", category: "Programming", color: "bg-orange-500" },
-      { name: "JavaScript", category: "Programming", color: "bg-orange-500" },
-      { name: "C", category: "Programming", color: "bg-orange-500" },
-      { name: "SQL", category: "Programming", color: "bg-orange-500" },
-      { name: "LaTeX", category: "Programming", color: "bg-orange-500" },
-    ],
-    "Electrical & Hardware": [
-      { name: "Quartus", category: "Hardware", color: "bg-yellow-500" },
-      { name: "Multisim", category: "Hardware", color: "bg-yellow-500" },
-      { name: "VHDL", category: "Hardware", color: "bg-yellow-500" },
-      { name: "Verilog", category: "Hardware", color: "bg-yellow-500" },
-      { name: "FPGA", category: "Hardware", color: "bg-yellow-500" },
-    ],
-    "Office & Productivity": [
-      { name: "MS Word", category: "Office", color: "bg-red-500" },
-      { name: "Excel Macros", category: "Office", color: "bg-red-500" },
-      { name: "VBA", category: "Office", color: "bg-red-500" },
-      { name: "PowerPoint", category: "Office", color: "bg-red-500" },
-    ],
-    Languages: [
-      {
-        name: "English (Native)",
-        category: "Language",
-        color: "bg-indigo-500",
-      },
-      {
-        name: "French (Upper Intermediate)",
-        category: "Language",
-        color: "bg-indigo-500",
-      },
-    ],
-  },
-}: SkillsSectionProps) => {
+const SkillsSection = ({ title = "Technical Skills" }: SkillsSectionProps) => {
+  const [skills, setSkills] = useState<Record<string, Skill[]>>({});
+
+  useEffect(() => {
+    const loadSkills = async () => {
+      try {
+        const response = await fetch("/src/data/skills.txt");
+        const text = await response.text();
+        const lines = text.split("\n");
+
+        const parsedSkills: Record<string, Skill[]> = {};
+        let currentCategory = "";
+
+        lines.forEach((line) => {
+          // Skip empty lines and comments
+          if (!line.trim() || line.startsWith("#")) return;
+
+          // Check if this is a category header
+          if (line.startsWith("[")) {
+            currentCategory = line.slice(1, -1);
+            parsedSkills[currentCategory] = [];
+            return;
+          }
+
+          // Parse skill entries
+          if (currentCategory && line.includes("|")) {
+            const [name, category, color, link] = line
+              .split("|")
+              .map((s) => s.trim());
+            parsedSkills[currentCategory].push({
+              name,
+              category,
+              color,
+              link: link === "#" ? undefined : link,
+            });
+          }
+        });
+
+        setSkills(parsedSkills);
+      } catch (error) {
+        console.error("Error loading skills:", error);
+      }
+    };
+
+    loadSkills();
+  }, []);
+
   return (
     <section className="w-full py-16 bg-background">
       <div className="container mx-auto px-4">
@@ -113,24 +100,52 @@ const SkillsSection = ({
                           delay: skillIndex * 0.05,
                         }}
                       >
-                        <Badge
-                          variant="secondary"
-                          className={`
-                            ${skill.color || "bg-primary"}
-                            text-white
-                            transition-all
-                            duration-300
-                            cursor-default
-                            text-sm
-                            font-medium
-                            shadow-sm
-                            hover:shadow
-                            hover:scale-105
-                            hover:opacity-90
-                          `}
-                        >
-                          {skill.name}
-                        </Badge>
+                        {skill.link ? (
+                          <a
+                            href={skill.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block"
+                          >
+                            <Badge
+                              variant="secondary"
+                              className={`
+                                ${skill.color || "bg-primary"}
+                                text-white
+                                transition-all
+                                duration-300
+                                cursor-pointer
+                                text-sm
+                                font-medium
+                                shadow-sm
+                                hover:shadow
+                                hover:scale-105
+                                hover:opacity-90
+                              `}
+                            >
+                              {skill.name}
+                            </Badge>
+                          </a>
+                        ) : (
+                          <Badge
+                            variant="secondary"
+                            className={`
+                              ${skill.color || "bg-primary"}
+                              text-white
+                              transition-all
+                              duration-300
+                              cursor-default
+                              text-sm
+                              font-medium
+                              shadow-sm
+                              hover:shadow
+                              hover:scale-105
+                              hover:opacity-90
+                            `}
+                          >
+                            {skill.name}
+                          </Badge>
+                        )}
                       </motion.div>
                     ))}
                   </div>

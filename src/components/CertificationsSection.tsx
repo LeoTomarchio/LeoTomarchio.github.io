@@ -12,6 +12,18 @@ interface Certification {
   link?: string;
 }
 
+const certificationLinks: Record<string, string> = {
+  "Certified SolidWorks Associate":
+    "https://www.solidworks.com/certifications/mechanical-design-cswa-mechanical-design",
+  "Basic Operations RPAS":
+    "https://tc.canada.ca/en/aviation/drone-safety/learn-rules-you-fly-your-drone/basic-advanced-operations",
+  "MATLAB and Simulink Onramp": "https://matlabacademy.mathworks.com/",
+  "Compressed Gases Safety":
+    "https://www.torontomu.ca/facilities-management-development/environmental-health-safety/laboratory-safety/compressed-gas-cylinders/",
+  "Certified Associate in Project Management":
+    "https://www.pmi.org/certifications/certified-associate-capm",
+};
+
 const CertificationsSection = () => {
   const certifications: Certification[] = [
     {
@@ -21,6 +33,7 @@ const CertificationsSection = () => {
       status: "Completed",
       description:
         "Certified in the mechanical design, assembly and drawings in SolidWorks.",
+      link: certificationLinks["Certified SolidWorks Associate"],
     },
     {
       name: "Basic Operations RPAS",
@@ -29,6 +42,7 @@ const CertificationsSection = () => {
       status: "Completed",
       description:
         "Certified for basic operations of drones issued by Canadian Aviation Regulations (CAR).",
+      link: certificationLinks["Basic Operations RPAS"],
     },
     {
       name: "MATLAB and Simulink Onramp",
@@ -36,6 +50,7 @@ const CertificationsSection = () => {
       date: "November 2023",
       status: "Completed",
       description: "Completed the introduction to MATLAB and Simulink.",
+      link: certificationLinks["MATLAB and Simulink Onramp"],
     },
     {
       name: "Compressed Gases Safety",
@@ -43,6 +58,7 @@ const CertificationsSection = () => {
       date: "February 2025",
       status: "Upcoming",
       description: "Certified to work with gas cylinders at TMU.",
+      link: certificationLinks["Compressed Gases Safety"],
     },
     {
       name: "Certified Associate in Project Management",
@@ -51,6 +67,7 @@ const CertificationsSection = () => {
       status: "In Progress",
       description:
         "Demonstrate understanding of the fundamental knowledge, terminology and processes of effective project management.",
+      link: certificationLinks["Certified Associate in Project Management"],
     },
   ];
 

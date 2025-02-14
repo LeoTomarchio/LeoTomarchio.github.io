@@ -1,0 +1,8 @@
+# Certification Links
+# Format: Certification Name | Link
+
+Certified SolidWorks Associate | https://www.solidworks.com/certifications/mechanical-design-cswa-mechanical-design
+Basic Operations RPAS | https://tc.canada.ca/en/aviation/drone-safety/learn-rules-you-fly-your-drone/basic-advanced-operations
+MATLAB and Simulink Onramp | https://matlabacademy.mathworks.com/
+Compressed Gases Safety | https://www.torontomu.ca/facilities-management-development/environmental-health-safety/laboratory-safety/compressed-gas-cylinders/
+Certified Associate in Project Management | https://www.pmi.org/certifications/certified-associate-capm

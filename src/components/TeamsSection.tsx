@@ -52,7 +52,7 @@ const TeamsSection = () => {
             <h2 className="text-4xl font-bold mb-4">Experience</h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {teams.map((team, index) => (
               <motion.div
                 key={team.id}
@@ -96,7 +96,7 @@ const TeamsSection = () => {
                               <Badge
                                 key={idx}
                                 variant="secondary"
-                                className={`${skill.color || "bg-secondary"}`}
+                                className={`${skill.color || "bg-secondary"} px-3 py-1`}
                               >
                                 {skill.name}
                               </Badge>

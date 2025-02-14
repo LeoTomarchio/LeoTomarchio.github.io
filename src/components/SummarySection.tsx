@@ -12,7 +12,7 @@ const SummarySection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-4">Summary</h2>
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             <p className="text-lg text-muted-foreground mb-6">
               Passionate Aerospace Engineering student at Toronto Metropolitan
               University, specializing in avionics systems and propulsion

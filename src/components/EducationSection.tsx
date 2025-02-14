@@ -30,7 +30,7 @@ const EducationSection = () => {
           >
             <h2 className="text-4xl font-bold mb-12">Education</h2>
             <Card
-              className="max-w-3xl mx-auto overflow-hidden cursor-pointer transition-all hover:border-primary/50 hover:shadow-lg"
+              className="max-w-4xl mx-auto overflow-hidden cursor-pointer transition-all hover:border-primary/50 hover:shadow-lg"
               onClick={() => setIsDialogOpen(true)}
             >
               <div className="p-8 flex justify-center items-center bg-background/50 border-b border-border">
@@ -53,7 +53,7 @@ const EducationSection = () => {
                     <Badge
                       key={index}
                       variant="secondary"
-                      className={`${spec.color} text-white`}
+                      className={`${spec.color} text-white px-3 py-1`}
                     >
                       {spec.name}
                     </Badge>

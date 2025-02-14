@@ -14,7 +14,7 @@ const HeroSection = ({
   backgroundColor = "#000000",
 }: HeroSectionProps) => {
   return (
-    <div className="relative w-full h-[600px] bg-black overflow-hidden">
+    <div className="relative w-full h-[800px] bg-black overflow-hidden">
       {/* Hero Image Background */}
       <div className="absolute inset-0 z-0">
         <img

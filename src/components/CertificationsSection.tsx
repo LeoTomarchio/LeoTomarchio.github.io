@@ -55,18 +55,18 @@ const CertificationsSection = () => {
     {
       name: "Compressed Gases Safety",
       issuer: "Toronto Metropolitan University",
-      date: "February 2025",
-      status: "Upcoming",
+      date: "February 2024",
+      status: "Completed",
       description: "Certified to work with gas cylinders at TMU.",
       link: certificationLinks["Compressed Gases Safety"],
     },
     {
-      name: "Certified Associate in Project Management",
+      name: "CAPM",
       issuer: "Project Management Institute",
       date: "December 2023 – Present",
       status: "In Progress",
       description:
-        "Demonstrate understanding of the fundamental knowledge, terminology and processes of effective project management.",
+        "Certified Associate in Project Management (CAPM) - Demonstrate understanding of the fundamental knowledge, terminology and processes of effective project management.",
       link: certificationLinks["Certified Associate in Project Management"],
     },
   ];
@@ -96,7 +96,7 @@ const CertificationsSection = () => {
           <h2 className="text-4xl font-bold mb-4">Certifications</h2>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {certifications.map((cert, index) => (
             <motion.div
               key={index}
@@ -110,7 +110,7 @@ const CertificationsSection = () => {
                     <CardTitle className="text-lg">{cert.name}</CardTitle>
                     <Badge
                       variant="secondary"
-                      className={`${getStatusColor(cert.status)}`}
+                      className={`${getStatusColor(cert.status)} px-3 py-1`}
                     >
                       {cert.status}
                     </Badge>

@@ -10,39 +10,39 @@ Inventor | CAD | bg-blue-500 | https://www.autodesk.com/products/inventor/
 Fusion 360 | CAD | bg-blue-500 | https://www.autodesk.com/products/fusion-360/
 
 [Engineering Standards]
-GD&T | Standards | bg-purple-500 | https://www.asme.org/codes-standards/y14-standards/
-SAE Standards | Standards | bg-purple-500 | https://www.sae.org/standards/
-ASME Standards | Standards | bg-purple-500 | https://www.asme.org/codes-standards/
-AN Standards | Standards | bg-purple-500 | https://www.sae.org/standards/
+GD&T | Standards | bg-violet-500 | https://www.asme.org/codes-standards/y14-standards/
+SAE Standards | Standards | bg-violet-500 | https://www.sae.org/standards/
+ASME Standards | Standards | bg-violet-500 | https://www.asme.org/codes-standards/
+AN Standards | Standards | bg-violet-500 | https://www.sae.org/standards/
 
 [Analysis & Simulation]
-Ansys Fluent | CFD | bg-green-500 | https://www.ansys.com/products/fluids/ansys-fluent
-Ansys Meshing | CFD | bg-green-500 | https://www.ansys.com/products/meshing
-2D/3D Modeling | CFD | bg-green-500 | https://www.ansys.com/products/3d-design
-FEA Theory | Analysis | bg-green-500 | https://www.torontomu.ca/calendar/2024-2025/courses/aerospace/AE/8115/
+Ansys Fluent | CFD | bg-pink-500 | https://www.ansys.com/products/fluids/ansys-fluent
+Ansys Meshing | CFD | bg-pink-500 | https://www.ansys.com/products/meshing
+2D/3D Modeling | CFD | bg-pink-500 | https://www.ansys.com/products/3d-design
+FEA Theory | Analysis | bg-pink-500 | https://www.torontomu.ca/calendar/2024-2025/courses/aerospace/AE/8115/
 
 [Programming & Development]
-MATLAB | Programming | bg-orange-500 | https://www.mathworks.com/products/matlab.html
-Simulink | Programming | bg-orange-500 | https://www.mathworks.com/products/simulink.html
-Python | Programming | bg-orange-500 | https://www.python.org/
-JavaScript | Programming | bg-orange-500 | https://developer.mozilla.org/en-US/docs/Web/JavaScript
-C | Programming | bg-orange-500 | https://en.cppreference.com/w/c
-SQL | Programming | bg-orange-500 | https://www.w3schools.com/sql/
-LaTeX | Programming | bg-orange-500 | https://www.latex-project.org/
+MATLAB | Programming | bg-green-500 | https://www.mathworks.com/products/matlab.html
+Simulink | Programming | bg-green-500 | https://www.mathworks.com/products/simulink.html
+Python | Programming | bg-green-500 | https://www.python.org/
+JavaScript | Programming | bg-green-500 | https://developer.mozilla.org/en-US/docs/Web/JavaScript
+C | Programming | bg-green-500 | https://en.cppreference.com/w/c
+SQL | Programming | bg-green-500 | https://www.w3schools.com/sql/
+LaTeX | Programming | bg-green-500 | https://www.latex-project.org/
 
 [Electrical & Hardware]
-Quartus | Hardware | bg-yellow-500 | https://www.intel.com/content/www/us/en/software/programmable/quartus-prime/overview.html
-Multisim | Hardware | bg-yellow-500 | https://www.ni.com/en/support/downloads/software-products/download.multisim.html
-VHDL | Hardware | bg-yellow-500 | https://vhdl.org/
-Verilog | Hardware | bg-yellow-500 | https://www.verilog.com/
-FPGA | Hardware | bg-yellow-500 | https://www.intel.com/content/www/us/en/products/programmable.html
+Quartus | Hardware | bg-orange-500 | https://www.intel.com/content/www/us/en/software/programmable/quartus-prime/overview.html
+Multisim | Hardware | bg-orange-500 | https://www.ni.com/en/support/downloads/software-products/download.multisim.html
+VHDL | Hardware | bg-orange-500 | https://vhdl.org/
+Verilog | Hardware | bg-orange-500 | https://www.verilog.com/
+FPGA | Hardware | bg-orange-500 | https://www.intel.com/content/www/us/en/products/programmable.html
 
 [Office & Productivity]
-MS Word | Office | bg-red-500 | https://www.microsoft.com/en-us/microsoft-365/word
-Excel Macros | Office | bg-red-500 | https://www.microsoft.com/en-us/microsoft-365/excel
-VBA | Office | bg-red-500 | https://learn.microsoft.com/en-us/office/vba/library-reference/concepts/getting-started-with-vba-in-office
-PowerPoint | Office | bg-red-500 | https://www.microsoft.com/en-us/microsoft-365/powerpoint
+MS Word | Office | bg-gray-500 | https://www.microsoft.com/en-us/microsoft-365/word
+Excel Macros | Office | bg-gray-500 | https://www.microsoft.com/en-us/microsoft-365/excel
+VBA | Office | bg-gray-500 | https://learn.microsoft.com/en-us/office/vba/library-reference/concepts/getting-started-with-vba-in-office
+PowerPoint | Office | bg-gray-500 | https://www.microsoft.com/en-us/microsoft-365/powerpoint
 
 [Languages]
-English (Native) | Language | bg-indigo-500 | #
-French (Upper Intermediate) | Language | bg-indigo-500 | #
+English (Native) | Language | bg-gray-500 | #
+French (Upper Intermediate) | Language | bg-gray-500 | #

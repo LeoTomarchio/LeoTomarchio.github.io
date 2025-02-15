@@ -44,39 +44,52 @@ const ProjectsGrid = () => {
 const projects: Project[] = [
   {
     id: "1",
-    title: "BattleBot Gearbox",
+    title: "Machine Learning Projects",
     description:
-      "Custom gearbox design optimized for combat robotics, featuring precision-engineered components and innovative dual-shaft system.",
-    imageUrl: "/images/BattleBot.png",
+      "Developed AI models for aerospace quality control: trained Sci-kit Learn models for data analysis, TensorFlow for defect detection in aerospace components, and YOLOv8 for PCB component validation.",
+    imageUrl: "/images/ai-quality.png",
     technologies: [
-      { name: "CAD", color: "bg-blue-500" },
-      { name: "Technical Drawing", color: "bg-orange-500" },
-      { name: "Design Analysis", color: "bg-green-500" },
+      { name: "TensorFlow", color: "bg-green-500" },
+      { name: "YOLOv8", color: "bg-green-500" },
+      { name: "Scikit-Learn", color: "bg-green-500" },
     ],
     link: "#",
   },
   {
     id: "2",
-    title: "Flight Simulator",
+    title: "BattleBot Gearbox",
     description:
-      "Advanced flight dynamics simulation integrating MATLAB, Simulink, and FlightGear for comprehensive Boeing 747 modeling.",
-    imageUrl: "/images/FlightGear.png",
+      "Designed and developed a cost-effective gearbox for combat robotics, including complete CAD models and technical documentation. Final design achieved 33% cost reduction below client's wholesale budget.",
+    imageUrl: "/images/BattleBot.png",
     technologies: [
-      { name: "MATLAB", color: "bg-purple-500" },
-      { name: "Simulink", color: "bg-blue-600" },
-      { name: "FlightGear", color: "bg-orange-600" },
+      { name: "CAD", color: "bg-indigo-500" },
+      { name: "Technical Drawing", color: "bg-violet-500" },
+      { name: "Design Analysis", color: "bg-blue-500" },
     ],
     link: "#",
   },
   {
     id: "3",
+    title: "Flight Simulator",
+    description:
+      "Developed a Boeing 747 flight simulator using MATLAB for flight dynamics calculations, implemented in Simulink, and integrated with FlightGear for real-time visualization and joystick control.",
+    imageUrl: "/images/FlightGear.png",
+    technologies: [
+      { name: "MATLAB", color: "bg-green-500" },
+      { name: "Simulink", color: "bg-green-500" },
+      { name: "FlightGear", color: "bg-blue-500" },
+    ],
+    link: "#",
+  },
+  {
+    id: "4",
     title: "Launch Pad Design",
     description:
-      "State-of-the-art launch pad facility designed with SolidWorks, incorporating advanced safety systems and efficient launch protocols.",
+      "Designed and manufactured a rocket launch pad for the Metropolitan Aerospace Rocket Society using SolidWorks, creating detailed technical drawings for precision machining and construction.",
     imageUrl: "/images/launchpad.png",
     technologies: [
-      { name: "SolidWorks", color: "bg-green-600" },
-      { name: "Technical Drawing", color: "bg-red-500" },
+      { name: "SolidWorks", color: "bg-indigo-500" },
+      { name: "Technical Drawing", color: "bg-violet-500" },
       { name: "Manufacturing", color: "bg-yellow-500" },
     ],
     link: "#",

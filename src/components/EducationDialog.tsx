@@ -40,7 +40,7 @@ export function EducationDialog({ isOpen, onClose }: EducationDialogProps) {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch("/src/data/courses.txt");
+        const response = await fetch("/data/courses.txt");
         const text = await response.text();
         const lines = text.split("\n");
 
@@ -63,18 +63,25 @@ export function EducationDialog({ isOpen, onClose }: EducationDialogProps) {
               currentSection === "Third Year" ||
               currentSection === "Fourth Year"
             ) {
-              if (line.includes("|")) {
-                const [courseInfo, grade, term] = line
-                  .split("|")
-                  .map((s) => s.trim());
-                const [code, name] = courseInfo
-                  .split(" - ")
-                  .map((s) => s.trim());
-                const course = { code, name, grade, term };
+              const parts = line.split("|").map((s) => s.trim());
+              if (parts.length >= 2) {
+                const courseInfo = parts[0];
+                const grade = parts[1];
+                const term = parts[2] || "";
+
+                const [code, ...nameParts] = courseInfo.split(" - ");
+                const name = nameParts.join(" - ").trim();
+
+                const course = {
+                  code: code.trim(),
+                  name: name || code, // Use code as name if name is empty
+                  grade: grade || "",
+                  term,
+                };
 
                 if (currentSection === "Third Year") {
                   parsedCourses.thirdYear.push(course);
-                } else {
+                } else if (currentSection === "Fourth Year") {
                   parsedCourses.fourthYear.push(course);
                 }
               }

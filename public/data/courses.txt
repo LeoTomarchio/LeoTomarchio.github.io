@@ -1,0 +1,33 @@
+# Course Data Format
+
+# Format for each year:
+# [Year Name]
+# Course Code - Course Name | Grade | Term
+# Add notes with > at the start of the line
+
+[Third Year]
+AER 504 - Aerodynamics | Passed | 
+AER 507 - Materials and Manufacturing | Passed | 
+AER 520 - Stress Analysis | Passed | 
+EES 612 - Electric Machines and Actuators | Passed | 
+MTH 510 - Numerical Analysis | Passed | 
+AER 509 - Control Systems | Current | 
+AER 606 - Component Design and Material Selection | Current | 
+AER 615 - Aircraft Performance | Current | 
+AER 621 - Aerospace Structural Design | Current | 
+AER 622 - Gas Dynamics | Current |
+AER 699 - Aerospace Sensors | Current | 
+
+[Fourth Year]
+EES 508 - Digital Systems | Passed |
+AER 715 - Avionics and Systems | Upcoming | 
+AER 716 - Aircraft Stability and Control | Upcoming | 
+AER 850 - Introduction to Machine Learning | Passed | 
+AER 710 - Propulsion | Upcoming | 
+AER 818 - Manufacturing Management | Upcoming | 
+AER 822 - Avionics Design Project | Upcoming | 
+
+[Specialization]
+Specialization: Avionics
+> Emphasis on flight control systems, sensors and autonomous aircraft
+> Active participation in aerospace design teams
